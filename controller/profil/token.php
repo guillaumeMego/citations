@@ -36,7 +36,7 @@ function envoiMail($email, $token){
       //Content
       $mail->isHTML(true);                                  //Set email format to HTML
       $mail->Subject = 'Token de recupération de mot de passe';
-      $mail->Body    = 'Voici votre lien de recuperation : http://localhost:8888/cdaDev/projet_citations/public/index.php?controller=profil&action=verifier&token='. $token;
+      $mail->Body    = 'Voici votre lien de recuperation : http://localhost:8888/cdaDev/citations/public/index.php?controller=profil&action=verifier&token='. $token;
     
      return $mail->send();
         

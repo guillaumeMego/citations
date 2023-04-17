@@ -1,6 +1,7 @@
 <?php 
 
 
+require __DIR__ . '/pdo.php';
 // verifier email existe
 function verifieMail($pdo, $mail){
     $sql = "SELECT * FROM utilisateurs WHERE mail = :mail";
@@ -48,12 +49,20 @@ function tokenExist($pdo, $token){
 
 // id part rapport au token
 function idToken($pdo, $token){
-    $sql = 'SELECT id FROM utilisateurs WHERE token = :token';
-    $query = $pdo->execute(
-        [
+    $query = $pdo->prepare('SELECT id FROM utilisateurs WHERE token = :token');
+    $query->execute([
             'token' => $token
-        ]
-        );
+        ]);
     $result = $query->fetch();
-    return $result;
+    return intval($result['id']); // convertir l'id en entier avec la fonction intval()
+}
+
+// fonction qui supprime le token
+function deleteToken($pdo, $id){
+    $sql = 'DELETE token FROM utilisateurs WHERE id = :id LIMIT 1';
+    $query = $pdo->prepare($sql);
+    $query->execute([
+        'id' => $id
+    ]);
+    return $query;
 }

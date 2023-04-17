@@ -4,7 +4,7 @@ ob_start();
 
 ?>
 
-<form action="index.php?controller=profil&action=verifier" method="post" class="form-control mx-auto p-4 shadow w-25">
+<form action="index.php?controller=profil&action=mdp&token=<?= $_GET['token'] ?>" method="post" class="form-control mx-auto p-4 shadow w-25">
     <div class="form-group">
         <label for="password">Mot de passe</label>
         <input type="password" name="password" id="password" class="form-control" required>

@@ -10,6 +10,7 @@ if (isset($_GET['action'])){
         case 'delete':
         case 'token':
         case 'verifier':
+        case 'mdp':
             $action = $_GET['action'];
             break;
         default:
